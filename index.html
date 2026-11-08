@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#080d1d">
+    <meta name="description" content="Jogo da Velha: um projeto educacional em HTML, CSS e JavaScript com visão de arquitetura AWS.">
+    <title>Jogo da Velha | AI/R Fellowship</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Jogo da Velha, início"><span>AI/R</span><span class="brand-divider"></span><span>Escola da Nuvem</span></a>
+      <nav aria-label="Navegação principal"><a href="#inicio">Início</a><a href="#jogo">Jogo</a><a href="#arquitetura">Arquitetura AWS</a></nav>
+    </header>
+    <main>
+      <section class="intro" id="inicio">
+        <p class="eyebrow">PROJETO PRÁTICO · AI/R FELLOWSHIP + ESCOLA DA NUVEM</p>
+        <h1>Jogo da <span>Velha</span></h1>
+        <p>Um clássico para praticar lógica, desenvolvimento web e arquitetura em nuvem. Jogue localmente e explore como uma aplicação estática pode ser distribuída na AWS.</p>
+        <div class="tech-list" aria-label="Tecnologias">HTML5 <span>CSS3</span> JavaScript ES6+</div>
+      </section>
+      <section class="game-section" id="jogo" aria-labelledby="game-title">
+        <div class="game-card">
+          <p class="eyebrow">PARTIDA LOCAL</p><h2 id="game-title">Sua vez</h2>
+          <p class="game-status" id="game-status" aria-live="polite">Vez do jogador X</p>
+          <div class="board" id="board" role="group" aria-label="Tabuleiro do jogo da velha"></div>
+          <div class="game-actions"><button class="button primary" id="new-game">Novo jogo</button><button class="button" id="reset-game">Reiniciar</button></div>
+        </div>
+        <aside class="info-card"><h2>Tecnologias do projeto</h2><p>HTML semântico, CSS responsivo e JavaScript modular sem frameworks.</p><h3>Projeto educacional</h3><p>Uma prática de engenharia de software com foco em organização, acessibilidade e fundamentos de cloud.</p><a class="text-link" href="#arquitetura">Explorar arquitetura →</a></aside>
+      </section>
+      <section class="architecture" id="arquitetura" aria-labelledby="architecture-title">
+        <p class="eyebrow">DISTRIBUIÇÃO DE CONTEÚDO ESTÁTICO</p><h2 id="architecture-title">Arquitetura AWS</h2>
+        <p class="architecture-lead">Uma proposta de hospedagem com bucket privado no Amazon S3 e distribuição HTTPS pelo CloudFront. Nenhuma infraestrutura foi implantada.</p>
+        <div class="flow" aria-label="Usuário solicita arquivos ao CloudFront, que pode obtê-los do S3 quando necessário">
+          <article class="service"><span class="service-icon" aria-hidden="true">◎</span><h3>Usuário</h3><p>Navegador via HTTPS</p></article><span class="flow-arrow" aria-hidden="true">→</span>
+          <article class="service cloudfront"><span class="service-icon" aria-hidden="true">◉</span><h3>Amazon CloudFront</h3><p>Cache e distribuição HTTPS</p></article><span class="flow-arrow" aria-hidden="true">⇄</span>
+          <article class="service s3"><span class="service-icon" aria-hidden="true">▤</span><h3>Amazon S3</h3><p>Bucket privado · acesso via OAC</p></article>
+        </div>
+        <div class="local-note"><strong>Execução no navegador</strong><span>Após baixar os arquivos, JavaScript aplica as regras do jogo localmente. As jogadas não chamam serviços AWS.</span></div>
+        <div class="future"><strong>Evolução futura · não implementada</strong><p>Para ranking ou partidas remotas, uma possibilidade seria API Gateway → AWS Lambda → DynamoDB.</p></div>
+      </section>
+    </main>
+    <footer>Projeto educacional · HTML, CSS e JavaScript</footer>
+  </body>
+</html>
