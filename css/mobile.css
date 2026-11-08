@@ -1,0 +1,245 @@
+/* Ajustes progressivos para mobile.
+ * Carregado após styles.css: não altera o layout desktop. */
+
+/* Evita estouros em itens flex/grid sem remover conteúdo. */
+.site-header, .hero-content, .game-panel, .side-panel,
+.arch-workspace, .simulator, .simulator-intro, .simulator-controls,
+.architecture-title, .future-panel { min-width: 0; }
+img, svg { max-width: 100%; }
+#inicio, #jogo, #arquitetura { scroll-margin-top: 112px; }
+
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 12px; }
+  .hero-art { transform: none; }
+  .hero-orbit { width: min(100%, 340px); height: 250px; }
+  .hero-board { width: 240px; height: 240px; }
+  .hero-board span { font-size: 39px; }
+  .hero-cloud { right: 4%; }
+  .game-grid { grid-template-columns: minmax(0, 1fr); }
+  .side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .info-panel { grid-column: 1 / -1; }
+}
+
+@media (max-width: 780px) {
+  html { scroll-padding-top: 114px; }
+  #inicio, #jogo, #arquitetura { scroll-margin-top: 114px; }
+
+  /* Cabeçalho compacto e links sempre acessíveis por toque. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 12px 16px 10px;
+    gap: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .identity { gap: 12px; align-self: flex-start; }
+  .air-logo { font-size: 23px; }
+  .air-logo small { font-size: 10px; }
+  .identity-line { height: 31px; }
+  .cloud-logo { font-size: 12px; }
+  .cloud-logo svg { width: 36px; }
+  .site-header nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 5px;
+  }
+  .site-header nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 43px;
+    text-align: center;
+    padding: 7px 4px;
+    border: 1px solid #58638c55;
+    border-radius: 9px;
+    background: #18223c80;
+    font-size: clamp(10px, 2.9vw, 13px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .site-header nav a:active { background: #4f358488; }
+
+  main { padding-inline: clamp(12px, 4vw, 26px); }
+
+  /* Conteúdo principal antes da decoração: nenhuma escala que gere área vazia. */
+  .hero {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 34px 0 28px;
+  }
+  .hero-content { max-width: 100%; }
+  .hero .eyebrow { font-size: 9px; letter-spacing: .12em; line-height: 1.6; }
+  .hero .eyebrow-line { width: 18px; margin-right: 4px; }
+  .hero-pill { margin-top: 19px; font-size: 10px; }
+  .hero h1 {
+    margin-block: 14px 18px;
+    font-size: clamp(44px, 11.3vw, 70px);
+    line-height: 1.08;
+    overflow-wrap: normal;
+  }
+  .hero-content > p { font-size: 15px; line-height: 1.65; }
+  .tech-stack { margin: 20px 0 24px; gap: 8px; }
+  .tech-stack span { font-size: 11px; padding: 9px 11px; }
+  .hero-cta { min-height: 48px; }
+  .hero-art {
+    margin: 0;
+    height: clamp(195px, 62vw, 280px);
+    width: 100%;
+    transform: none;
+    overflow: hidden;
+  }
+  .hero-art::before { width: min(85vw, 320px); height: 220px; }
+  .hero-orbit { width: min(90%, 325px); height: min(58vw, 230px); }
+  .hero-board {
+    width: clamp(175px, 47vw, 240px);
+    height: clamp(175px, 47vw, 240px);
+    padding: 11px;
+    gap: 6px;
+  }
+  .hero-board span { font-size: clamp(25px, 8vw, 42px); }
+  .hero-cloud { font-size: 45px; right: 10%; bottom: 4%; }
+
+  /* Tabuleiro e ações sempre cabem na largura útil. */
+  .game-layout { padding: 20px 0 66px; }
+  .section-heading h2, .architecture-title h2 { font-size: clamp(31px, 8vw, 45px); }
+  .section-heading p { font-size: 14px; line-height: 1.55; }
+  .game-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .game-panel { padding: 19px clamp(12px, 4vw, 25px); }
+  .panel-header { flex-wrap: wrap; justify-content: center; gap: 9px; }
+  .turn-display { margin-top: 20px; }
+  .board {
+    width: min(100%, 350px);
+    margin: 20px auto 22px;
+    gap: clamp(6px, 2.2vw, 10px);
+  }
+  .cell {
+    min-width: 0;
+    min-height: 0;
+    border-radius: clamp(9px, 3vw, 16px);
+    font-size: clamp(33px, 12vw, 65px);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .game-actions { gap: 9px; }
+  .game-actions .btn { flex: 1 1 160px; min-height: 48px; }
+  .game-hint { line-height: 1.55; }
+
+  .side-stack { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  .info-panel { grid-column: auto; }
+  .side-panel { padding: 20px; }
+  .score-row > div { min-width: 0; }
+  .score-row span { font-size: 10px; overflow-wrap: anywhere; }
+  .tech-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .info-panel a { display: inline-block; padding-block: 9px; }
+
+  /* Arquitetura no celular: cartões empilhados e setas visíveis.
+     Não há deslocamento lateral de 760px para compreender o fluxo. */
+  .architecture-section { padding: 56px 0 65px; }
+  .architecture-title { display: block; }
+  .architecture-title p { font-size: 14px; }
+  .aws-tag { display: none; }
+  .arch-workspace { border-radius: 16px; }
+  .arch-toolbar { padding: 15px; gap: 8px; font-size: 11px; }
+  .arch-label { overflow-wrap: anywhere; line-height: 1.5; }
+  .arch-scroll { overflow: visible; }
+  .diagram {
+    min-width: 0;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 52px clamp(15px, 5vw, 28px) 24px;
+  }
+  .diagram-cloud { top: 17px; left: 18px; }
+  .diagram-lines { display: none; }
+  .node, .node-user, .node-cdn, .node-s3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-height: 104px;
+    height: auto;
+    padding: 14px 16px;
+    border-radius: 15px;
+    gap: 5px;
+    transform: none;
+  }
+  .node-glyph { font-size: 30px; }
+  .node strong { font-size: 17px; }
+  .node small { font-size: 12px; text-align: center; line-height: 1.4; }
+  .node:hover, .node.active { transform: none; }
+  .node:not(.node-s3)::after {
+    content: '↓';
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 25px;
+    color: var(--cyan);
+    text-shadow: 0 0 13px #22e7f5a0;
+    pointer-events: none;
+  }
+  .node-cdn::after { color: #c58cff !important; }
+  .diagram.is-running .node.active { animation: node-mobile-pulse 1s ease-in-out infinite alternate; }
+  @keyframes node-mobile-pulse {
+    from { box-shadow: 0 0 8px #32e5f522; }
+    to { box-shadow: 0 0 27px #32e5f588; }
+  }
+  .diagram-bottom {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+  .simulator { display: block; padding: 18px; }
+  .simulator h3 { font-size: 21px; line-height: 1.25; overflow-wrap: anywhere; }
+  .simulator p { font-size: 14px; min-height: 0; }
+  .simulator-controls { min-width: 0; margin-top: 22px; }
+  .simulator-controls select { width: 100%; min-height: 46px; }
+  .control-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .control-buttons .btn { min-width: 0; min-height: 46px; padding: 9px 8px; line-height: 1.35; }
+  .control-buttons #flow-start { grid-column: 1 / -1; }
+  .step-dots span { flex: 1; max-width: 40px; }
+  .arch-features { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .arch-features > div { padding: 19px; }
+  .future-panel { display: block; padding: 20px; }
+  .future-panel p { overflow-wrap: anywhere; }
+  .future-path { display: flex; flex-wrap: wrap; margin-top: 17px; gap: 7px; }
+  .future-path span { font-size: 10px; }
+  .site-footer { flex-direction: column; gap: 7px; line-height: 1.6; }
+}
+
+@media (max-width: 380px) {
+  html { scroll-padding-top: 118px; }
+  #inicio, #jogo, #arquitetura { scroll-margin-top: 118px; }
+  .site-header { padding-inline: 11px; }
+  .cloud-logo { font-size: 11px; }
+  .cloud-logo svg { width: 31px; }
+  .hero h1 { font-size: clamp(41px, 11.8vw, 50px); }
+  .hero-content > p { font-size: 14px; }
+  .game-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .game-actions .btn { width: 100%; }
+  .score-row { gap: 6px; }
+  .score-row > div { padding-inline: 4px; }
+  .control-buttons { grid-template-columns: minmax(0, 1fr); }
+  .control-buttons #flow-start { grid-column: auto; }
+  .node { min-height: 110px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram.is-running .node.active { animation: none; }
+  .node, .hero-board, .cell { transition: none; }
+}
